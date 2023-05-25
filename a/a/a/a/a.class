@@ -1,1 +1,104 @@
+package a.a.a.a;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.channels.FileChannel;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class a {
+  public static b<ByteBuffer, Long> a(FileChannel paramFileChannel) {
+    long l;
+    if ((l = paramFileChannel.size()) >= 22L) {
+      long l1;
+      byte b;
+      long l2;
+      for (l1 = Math.min(l -= 22L, 65535L), b = 0; (l2 = b) <= l1; ) {
+        l2 = l - l2;
+        paramFileChannel.position(l2);
+        paramFileChannel.read(ByteBuffer.allocate(4));
+        ByteOrder byteOrder;
+        ByteBuffer.allocate(4).order(byteOrder = ByteOrder.LITTLE_ENDIAN);
+        paramFileChannel.position(l2 + 20L);
+        paramFileChannel.read(byteBuffer);
+        ByteBuffer byteBuffer;
+        (byteBuffer = ByteBuffer.allocate(2)).order(byteOrder);
+        short s;
+        if (ByteBuffer.allocate(4).getInt(0) == 101010256 && (s = ByteBuffer.allocate(2).getShort(0)) == b) {
+          ByteBuffer byteBuffer1;
+          l = s;
+          byteBuffer2.order(byteOrder);
+          paramFileChannel.position(paramFileChannel.size() - l - 6L);
+          paramFileChannel.read(byteBuffer2);
+          ByteBuffer byteBuffer2;
+          if ((l = (byteBuffer2 = ByteBuffer.allocate(4)).getInt(0)) >= 32L) {
+            paramFileChannel
+              .position(l - 24L);
+            paramFileChannel.read(byteBuffer2);
+            (byteBuffer2 = ByteBuffer.allocate(24)).order(byteOrder);
+            if (ByteBuffer.allocate(24).getLong(8) == 2334950737559900225L && byteBuffer2.getLong(16) == 3617552046287187010L) {
+              long l3;
+              if ((l3 = byteBuffer2.getLong(0)) >= byteBuffer2.capacity() && l3 <= 2147483639L) {
+                int i;
+                long l4;
+                if ((l4 = l - (i = (int)(l3 + 8L))) >= 0L) {
+                  paramFileChannel.position(l4);
+                  paramFileChannel.read(byteBuffer1);
+                  (byteBuffer1 = ByteBuffer.allocate(i)).order(byteOrder);
+                  long l5;
+                  if ((l5 = ByteBuffer.allocate(i).getLong(0)) == l3) {
+                    Long long_ = Long.valueOf(l4);
+                    return new b<>(byteBuffer1, long_);
+                  } 
+                  throw new c("APK Signing Block sizes in header and footer do not match: " + l5 + " vs " + l3);
+                } 
+                throw new c("APK Signing Block offset out of range: " + l4);
+              } 
+              throw new c("APK Signing Block size out of range: " + l3);
+            } 
+            throw new c("No APK Signing Block before ZIP Central Directory");
+          } 
+          throw new c("APK too small for APK Signing Block. ZIP Central Directory offset: " + byteBuffer1);
+        } 
+        b++;
+      } 
+      throw new IOException("ZIP End of Central Directory (EOCD) record not found");
+    } 
+    throw new IOException("APK too small for ZIP End of Central Directory (EOCD) record");
+  }
+  
+  public static Map<Integer, ByteBuffer> a(ByteBuffer paramByteBuffer) {
+    if (paramByteBuffer.order() == ByteOrder.LITTLE_ENDIAN) {
+      ByteBuffer byteBuffer;
+      int i = 8;
+      int j;
+      if ((j = paramByteBuffer.capacity() - 24) >= i) {
+        ByteBuffer byteBuffer1;
+        int k = paramByteBuffer.capacity();
+        if (j <= paramByteBuffer.capacity()) {
+          LinkedHashMap<Object, Object> linkedHashMap;
+          i = paramByteBuffer.limit();
+          j = paramByteBuffer.position();
+          try {
+            paramByteBuffer.position(0);
+            paramByteBuffer.limit(j);
+            paramByteBuffer.position(i);
+            (byteBuffer1 = paramByteBuffer.slice()).order(paramByteBuffer.order());
+            paramByteBuffer.position(0);
+            paramByteBuffer.limit(i);
+            return (Map)linkedHashMap;
+          } finally {
+            linkedHashMap
+              .position(0);
+            linkedHashMap.limit(i);
+            linkedHashMap.position(byteBuffer);
+          } 
+        } 
+        throw new IllegalArgumentException("end > capacity: " + byteBuffer + " > " + byteBuffer1);
+      } 
+      throw new IllegalArgumentException("end < start: " + byteBuffer + " < " + i);
+    } 
+    throw new IllegalArgumentException("ByteBuffer byte order must be little endian");
+  }
+}
