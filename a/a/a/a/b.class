@@ -1,1 +1,110 @@
+package a.a.a.a;
+
+public class b<A, B> {
+  public final A a;
+  
+  public final B b;
+  
+  public b(A paramA, B paramB) {
+    this.a = paramA;
+    this.b = paramB;
+  }
+  
+  public int hashCode() {
+    // Byte code:
+    //   0: aload_0
+    //   1: bipush #31
+    //   3: istore_1
+    //   4: getfield a : Ljava/lang/Object;
+    //   7: dup
+    //   8: astore_2
+    //   9: ifnonnull -> 17
+    //   12: iconst_0
+    //   13: istore_2
+    //   14: goto -> 22
+    //   17: aload_2
+    //   18: invokevirtual hashCode : ()I
+    //   21: istore_2
+    //   22: aload_0
+    //   23: iload_1
+    //   24: iload_2
+    //   25: iadd
+    //   26: bipush #31
+    //   28: imul
+    //   29: istore_0
+    //   30: getfield b : Ljava/lang/Object;
+    //   33: dup
+    //   34: astore_1
+    //   35: ifnonnull -> 43
+    //   38: iconst_0
+    //   39: istore_1
+    //   40: goto -> 48
+    //   43: aload_1
+    //   44: invokevirtual hashCode : ()I
+    //   47: istore_1
+    //   48: iload_0
+    //   49: iload_1
+    //   50: iadd
+    //   51: ireturn
+  }
+  
+  public boolean equals(Object paramObject) {
+    // Byte code:
+    //   0: aload_0
+    //   1: aload_1
+    //   2: if_acmpne -> 7
+    //   5: iconst_1
+    //   6: ireturn
+    //   7: aload_1
+    //   8: ifnonnull -> 13
+    //   11: iconst_0
+    //   12: ireturn
+    //   13: aload_1
+    //   14: invokevirtual getClass : ()Ljava/lang/Class;
+    //   17: ldc a/a/a/a/b
+    //   19: swap
+    //   20: if_acmpeq -> 25
+    //   23: iconst_0
+    //   24: ireturn
+    //   25: aload_0
+    //   26: aload_1
+    //   27: checkcast a/a/a/a/b
+    //   30: astore_1
+    //   31: getfield a : Ljava/lang/Object;
+    //   34: dup
+    //   35: astore_2
+    //   36: ifnonnull -> 48
+    //   39: aload_1
+    //   40: getfield a : Ljava/lang/Object;
+    //   43: ifnull -> 61
+    //   46: iconst_0
+    //   47: ireturn
+    //   48: aload_2
+    //   49: aload_1
+    //   50: getfield a : Ljava/lang/Object;
+    //   53: invokevirtual equals : (Ljava/lang/Object;)Z
+    //   56: ifne -> 61
+    //   59: iconst_0
+    //   60: ireturn
+    //   61: aload_0
+    //   62: getfield b : Ljava/lang/Object;
+    //   65: dup
+    //   66: astore_0
+    //   67: ifnonnull -> 79
+    //   70: aload_1
+    //   71: getfield b : Ljava/lang/Object;
+    //   74: ifnull -> 92
+    //   77: iconst_0
+    //   78: ireturn
+    //   79: aload_0
+    //   80: aload_1
+    //   81: getfield b : Ljava/lang/Object;
+    //   84: invokevirtual equals : (Ljava/lang/Object;)Z
+    //   87: ifne -> 92
+    //   90: iconst_0
+    //   91: ireturn
+    //   92: iconst_1
+    //   93: ireturn
+  }
+}
 
